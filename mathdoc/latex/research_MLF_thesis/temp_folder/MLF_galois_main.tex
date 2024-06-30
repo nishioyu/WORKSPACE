@@ -1,0 +1,691 @@
+\documentclass[11pt,showkeys]{article}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+\usepackage{amsmath}
+\usepackage[mathscr]{eucal}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{comment}
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+\usepackage{amsthm}
+\usepackage[top=40truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{introtheorem}{Theorem}
+\renewcommand{\theintrotheorem}{\Alph{introtheorem}}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{Proof}[theorem]{Proof}
+
+
+\def\bN{{\mathbb N}}
+\def\bZ{{\mathbb Z}}
+\def\bQ{{\mathbb Q}}
+\def\bR{{\mathbb R}}
+\def\bC{{\mathbb C}}
+
+\def\bF{{\mathbb F}}
+\def\bK{{\mathbb K}}
+
+\def\frkg{{\mathfrak g}}
+\def\frkh{{\mathfrak h}}
+\def\frkk{{\mathfrak k}}
+\def\frkr{{\mathfrak r}}
+\def\frks{{\mathfrak s}}
+
+\def\frkgl{{\mathfrak {gl}}}
+\def\frksl{{\mathfrak {sl}}}
+\def\frksp{{\mathfrak {sp}}}
+\def\frkso{{\mathfrak {so}}}
+
+\def\scrL{{\mathscr L}}
+\def\scrF{{\mathscr F}}
+
+\def\bQbar{{\overline{\mathbb Q}}}
+
+\def\Xbar{{\overline{X}}}
+\def\Zp{{{\mathbb Z}_p}}
+\def\Qp{{{\mathbb Q}_p}}
+
+\def\an{{\mathrm{an}}}
+\def\alg{{\mathrm{alg}}}
+\def\op{{\mathrm{op}}}
+\def\Gr{{\mathrm{Gr}}}
+
+\def\CalB{{\mathcal B}}
+\def\CalF{{\mathcal F}}
+\def\CalM{{\mathcal M}}
+\def\CalO{{\mathcal O}}
+\def\CalI{{\mathcal I}}
+
+\def\peh{{{\mathcal P}}}
+
+\def\profin{{\widehat{~}}}
+\def\prol{{(\ell)}}
+
+\def\bx{{\mathbf x}}
+\def\id{{\mbox{id}}}
+\def\Ker{{\mbox{Ker}}}
+\def\Im{{\mbox{Im}}}
+\def\Map{{\mbox{Map}}}
+\def\Exp{{\mbox{Exp}}}
+\def\mod{{\mbox{ mod }}}
+\def\Hom{{\mbox{Hom}}}
+\def\End{{\mbox{End}}}
+\def\Aut{{\mbox{Aut}}}
+\def\Inn{{\mbox{Inn}}}
+\def\Out{{\mbox{Out}}}
+\def\Diff{{\mbox{Diff}}}
+\def\Gal{{\mbox{Gal}}}
+\def\Lie{{\mbox{Lie}}}
+\def\Der{{\mbox{Der}}}
+
+\def\Spec{{\mbox{Spec}}}
+\def\Kbar{{\overline{K}}}
+\def\prP{{\mathbb P}}
+\def\prPthree{{{\mathbb P}_{0,1,\infty}}}
+
+\def\defeq{ \ {\stackrel{\mathrm{def}}{=}} \ }
+
+\title{On the outer automorphism groups of the absolute Galois groups of mixed-characteristic local fields}
+
+\author{Yuichiro Hoshi \and Yu Nishio}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the present paper, we study the outer automorphism groups of the 
+absolute Galois groups of mixed-characteristic local fields from the 
+point of view of anabelian geometry.  Let us recall that it is 
+well-known that the natural homomorphism from the automorphism group 
+of a given mixed-characteristic local field to the outer automorphism 
+group of the absolute Galois group of the given mixed-characteristic 
+local field is injective.  One main result of the present paper is 
+that if the given mixed-characteristic local field satisfies certain 
+conditions, then the set of conjugates of the image of this injective 
+homomorphism in the outer automorphism group is infinite, which thus 
+implies that the image of this injective homomorphism is not normal in 
+the outer automorphism group. 
+\end{abstract} 
+
+
+\begin{comment}
+\keywords{mixed-characteristic local field, Galois group, 
+anabelian geometry, mono-anabelian geometry, 
+group of MLF-type}
+\subjclass{hoge}
+\end{comment}
+
+\setcounter{section}{-1}
+
+\section*{Introduction}
+Let $p$ be a prime number, $k$ a finite extension of 
+$\mathbb{Q}_p$, and $\overline{k}$ an algebraic closure 
+of $k$.  Write $G_k \stackrel{\mathrm{def}}{=} \mathrm{Gal}
+(\overline{k} / k)$ for the absolute Galois group of $k$ 
+determined by the algebraic closure $\overline{k}$ 
+and $\mathrm{Out}(G_k)$ for the group of outer 
+automorphisms of the group $G_k$ [or, alternatively, the 
+group of outer continuous automorphisms of the profinite 
+group $G_k$ --- cf., e.g., \cite{Hoshi4}, Proposition 1.2, 
+(i), (ii)].  In the present paper, we study the outer automorphism group 
+$\mathrm{Out}(G_k)$ from the point of view of anabelian 
+geometry.  
+
+
+Write $\mathrm{Aut}(k)$ for the group of automorphisms of 
+the field $k$.  Thus, we have a natural homomorphism 
+$\mathrm{Aut}(k) \to \mathrm{Out}(G_k)$ of groups.  Let us 
+first recall that it is well-known [cf., e.g., \cite{Hoshi1}, 
+Proposition 2.1] that this homomorphism is injective.  In 
+the present paper, let us regard $\mathrm{Aut}(k)$ as a 
+[necessarily finite] subgroup of $\mathrm{Out}(G_k)$ by 
+means of this injective homomorphism:  
+\[
+\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k).  
+\]
+Here, we note that it is well-known [cf., e.g., the 
+discussion given at the final portion of \cite{NSW}, 
+Chapter VII, \S 5] that, in general, the equality 
+$\mathrm{Aut}(k) = \mathrm{Out}(G_k)$ does not hold.  
+In particular, one may conclude that, roughly speaking, 
+in general, a finite extension of $\mathbb{Q}_p$ 
+should be considered to be ``not anabelian'' [cf.\ also \cite{NSW}, Chapter XII, \S 2, Closing remark].   
+
+
+Write $(\mathbb{Q}_p)_+ \subseteq k_+$ for the underlying 
+additive modules of the fields $\mathbb{Q}_p \subseteq k$, 
+respectively.  Next, let us recall that, by applying a 
+functorial group-theoretic reconstruction algorithm 
+established in the study of the mono-anabelian geometry of mixed-characteristic local fields [cf., 
+e.g., \cite{Hoshi1}, Definition 3.10, (vi), and \cite{Hoshi1}, 
+Proposition 3.11, (iv)], one obtains an action of the group 
+$\mathrm{Out}(G_k)$ on the module $k_+$ whose restriction 
+to the above subgroup $\mathrm{Aut}(k) \subseteq 
+\mathrm{Out}(G_k)$ coincides with the natural action of 
+$\mathrm{Aut}(k)$ on $k_+$.  
+
+
+One main technical result of the present paper is as 
+follows [cf.\ Theorem \ref{theorem:2.8}, (i)]:
+
+\begin{introtheorem}
+\label{AAAAAAA}
+Suppose that the following three conditions are 
+satisfied:  
+\begin{itemize}
+\item[$(1)$]
+The prime number $p$ is odd.  
+\item[$(2)$]
+The finite extension $k / \mathbb{Q}_p$ is 
+of even degree.  
+\item[$(3)$]
+The finite extension $k / \mathbb{Q}_p$ is Galois, 
+and, moreover, the Galois group 
+$\mathrm{Gal}(k / \mathbb{Q}_p)$ is abelian.  
+\end{itemize}
+Then there exists an outer automorphism $\alpha$ of $G_k$ 
+such that, for each positive integer $n$, if one writes 
+$\alpha_+^n$ for the action of $\alpha^n$ on $k_+$, then 
+$\alpha^n_+((\mathbb{Q}_p)_+) \neq (\mathbb{Q}_p)_+$.  
+\end{introtheorem}
+\begin{comment}
+key phrase:
+
+anabelian geometry, 
+mono-anabelian geometry, 
+mono-anabelian reconstruction algorithm, 
+MLF, group of MLF-type, 
+log-shell, 
+absolutely abelian MLF, 
+Galoisspecifiable MLF.
+local fields, 
+\end{comment}
+
+Next, let us recall that the first author of the 
+present paper proved that if $p$ is odd, and $k$ 
+coincides with the [necessarily finite Galois] 
+extension of $\mathbb{Q}_p$ obtained by adjoining 
+a primitive $p$-th root of unity and a $p$-th root 
+of $p \in \mathbb{Q}_p$, then the above subgroup 
+$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$ is 
+not normal [cf.\ \cite{Hoshi2}, Theorem G, (iii)].  
+In the present paper, we give a proof of an assertion 
+in this direction by applying Theorem~\ref{AAAAAAA}.  
+More precisely, in the present paper, we prove the 
+following result [cf.\ Theorem \ref{theorem:2.8}, 
+(ii)]:  
+
+
+\begin{introtheorem}
+\label{BBBBBBB}
+Suppose that the three conditions in the statement of 
+Theorem~\ref{AAAAAAA} are satisfied.  Then the set of 
+$\mathrm{Out}(G_k)$-conjugates of the subgroup 
+$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$ is 
+infinite.  
+\end{introtheorem}
+
+
+A formal consequence of Theorem~\ref{BBBBBBB} is as 
+follows [cf.\ Corollary \ref{corollary:2.9}]:  
+
+
+\begin{introtheorem}
+\label{CCCCCCC}
+Suppose that the three conditions in the statement of 
+Theorem~\ref{AAAAAAA} are satisfied.  
+Then the following hold:  
+\begin{itemize}
+\item[$(\mathrm{i})$]
+The subgroup $\mathrm{Aut}(k) \subseteq 
+\mathrm{Out}(G_k)$ is not normal.  
+\item[$(\mathrm{ii})$]
+There exist infinitely many distinct [necessarily 
+finite] subgroups of $\mathrm{Out}(G_k)$ isomorphic 
+to $\mathrm{Aut}(k)$.  
+\end{itemize}
+\end{introtheorem}
+
+
+The issue of whether or not a group-theoretic 
+reconstruction, from the group $G_k$, of the 
+``field-theoretic'' subgroup 
+$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$ 
+of the outer automorphism group $\mathrm{Out}(G_k)$ 
+can be established is interesting from the 
+point of view of the anabelian geometry of 
+mixed-characteristic local fields.  
+Now let us recall that if the condition (3) in the 
+statement of Theorem~\ref{AAAAAAA} 
+is satisfied, then, roughly speaking, 
+one may reconstruct group-theoretically, 
+from the group $G_k$, the set of 
+$\mathrm{Out}(G_k)$-conjugates of the 
+subgroup $\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$ 
+[cf.\ \cite{Hoshi2}, Theorem F, (i), and 
+\cite{Hoshi2}, Theorem 6.12, (ii)].  
+On the other hand, Theorem~\ref{CCCCCCC}, (i), 
+implies that if the three conditions in the statement 
+of Theorem~\ref{AAAAAAA} are satisfied, then, 
+roughly speaking, it is impossible to establish 
+a group-theoretic reconstruction of the 
+subgroup $\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$ 
+itself [i.e., as opposed to the set of $\mathrm{Out}(G_k)$-conjugates of the subgroup 
+$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$].  
+
+\section{Notational Conventions}\label{section0}
+
+\subparagraph{Sets} If $G$ is a group, and $T$ is a set equipped with an action of $G$, then we shall write $T^G \subseteq T$ for the subset of $G$-invariants of $T$. 
+
+
+\subparagraph{Modules} If $M$ is a module, then we shall write $M_{\mathrm{tor}} \subseteq M$ for the submodule of torsion elements of $M$. 
+
+\subparagraph{Topological Groups} Let $G$ be a topological group. Then we shall write $G^{\rm ab}$ for
+the abelianization of $G$ [i.e., the quotient of $G$ by the closure of the commutator subgroup
+of $G$] and $G^{\rm ab/tor}$ for the quotient of $G^{\rm ab}$ by the closure of
+$(G^{\rm ab})_{\rm tor} \subseteq G^{\rm ab}$. 
+
+\subparagraph{Rings}
+If $R$ is a ring, then we shall write $R_+$ for the underlying additive module and $R^\times$ for the multiplicative module of units of $R$.  
+
+\subparagraph{Fields} We shall refer to a field isomorphic to a finite extension of $\Qp$, for some prime number $p$, as an $MLF$. Here, ``MLF'' is to be understood as an abbreviation for ``mixed-characteristic local field''. 
+
+\section{Existence of an automorphism with a certain unipotency condition of a group of MLF-type}\label{section1}
+
+In the present \S \ref{section1}, we prove that a certain group 
+of MLF-type admits an automorphism that has an interesting property 
+[cf.\ Theorem \ref{theorem:1.5} below]. 
+In the present \S \ref{section1}, let $G$ be a [profinite --- cf.\ \cite{Hoshi4}, Proposition 1.2, (i), (ii)] group of MLF-type [cf.\ \cite{Hoshi4}, Definition 1.1]. Thus, by applying the various group-theoretic reconstruction algorithms of \cite{Hoshi1}, \S 3 [cf.\ \cite{Hoshi1}, Definition 3.5, (i), (ii), (iii); \cite{Hoshi1}, Definition 3.10, (ii), (iv), (vi)], to  the group $G$ of MLF-type, we obtain
+\begin{itemize}
+  \item a prime number $p(G)$,
+  \item positive integers $d(G)$ and $f(G)$, 
+  \item a normal closed subgroup $P(G) \subseteq G$ of $G$, and
+  \item topological modules $\CalO^{\prec}(G) \subseteq k^{\times}(G)$ and $k_+(G)$ 
+\end{itemize}
+[cf.\ also \cite{Hoshi1}, Summary 3.15]. 
+In the present \S \ref{section1}, suppose, moreover, that $p(G)$ is odd, and that $d(G)$ is even. 
+
+\begin{prop}[Jannsen-Wingberg]\label{proposition:1.1} 
+The profinite group $G$ is topologically generated by $d(G)+3$ elements $\sigma$, $\tau$, $x_0, \dots, x_{d(G)}$ subject to the following conditions and relations.
+
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+  \item[\rm (i)] The normal closed subgroup $P(G)$ of $G$ is topologically normally generated by $x_0, \dots, x_{d(G)}$.
+  \item[\rm (ii)] The elements $\sigma$, $\tau$ satisfy the relation $\sigma \tau \sigma^{-1} = \tau^{p(G)^{f(G)}}$.
+  \item[\rm (iii)] The generators under consideration satisfy the relation 
+\[
+\sigma x_0 \sigma^{-1}
+=
+(x^{h^{{p(G)}-1}}_0 \tau x^{h^{{p(G)}-2}}_0 \tau \cdots x^{h}_0 \tau)^{\frac{\pi g}{{p(G)}-1}}
+x_1^{p(G)^{s}}
+\prod_{i=1}^{d(G)/2} [x_{2i-1},x_{2i}] ,
+\]
+where $s, g, h$ are some positive integers such that 
+\[
+g(h^{p(G) - 1} + h^{p(G) - 2} + \cdots + h) \neq p(G) - 1, 
+\]
+and $\pi$ is the unique element of $\hat{\bZ} = \prod_p \bZ_p$ whose image in $\bZ_p$ is $1$ if $p = p(G)$ $($resp.\ $0$ if $p\neq p(G)$$)$.  
+\end{enumerate}
+\end{prop}
+\begin{proof}
+This assertion follows from \cite{NSW}, Theorem 7.5.14, together with \cite{Hoshi1}, Proposition 3.6. [Note that it follows from the discussion preceding \cite{NSW}, Theorem 7.5.14, that one may take the ``$g$'' and ``$h$'' of \cite{NSW}, Theorem 7.5.14, to be positive integers greater than $p(G)$.]  
+\end{proof}
+
+In the remainder of the present \S \ref{section1}, let us fix 
+topological generators $\sigma$, $\tau$, $x_0, \dots, x_{d(G)}$ of 
+$G$ as in Proposition \ref{proposition:1.1}. Write $S \defeq \{0, 
+1, \dots, d(G)\}$. Moreover, for each $i \in S$, write $y_i \in k_+(G)$ 
+for the image of $x_i$ in $k_+(G)$ and $z_i \in \CalO^{\prec}(G)^{\rm ab/tor}$ for the image 
+of $x_i$ in $\CalO^{\prec}(G)^{\rm ab/tor}$ [cf.\ the condition (i) of Proposition \ref{proposition:1.1}; 
+\cite{Hoshi1}, Lemma 1.5, (ii); \cite{Hoshi1}, Proposition 3.6; 
+\cite{Hoshi1}, Definition 3.10, (i), (ii), (vi)]. 
+
+\begin{lem}\label{lemma:1.2} 
+ The topological module $k_{+}(G)$ has a natural structure of ${\bQ}_{p(G)}$-vector space of dimension $d(G)$. 
+\end{lem}
+
+\begin{proof}
+It follows immediately from the definition of $k_{+}(G)$ [cf.\ \cite{Hoshi1}, Definition 3.10, (vi)] that $k_{+}(G)$ has a natural structure of ${\bQ}_{p(G)}$-vector space. Moreover, it follows from \cite{Hoshi1}, Proposition 3.11, (iv), that this $\bQ_{p(G)}$-vector space $k_{+}(G)$ is of dimension $d(G)$. 
+\end{proof}
+
+\begin{lem}\label{lemma:1.3} 
+The $d(G)$ elements $y_1, \dots, y_{d(G)}$ form a basis of the $\bQ_{p(G)}$-vector space $k_{+}(G)$ [cf.\ Lemma \ref{lemma:1.2}]. 
+\end{lem}
+
+\begin{proof}
+Since ${\{x_i\} }_{i \in S}$ topologically normally generates $P(G)$ [cf.\ Proposition \ref{proposition:1.1}, (i)], ${\{z_i\} }_{i \in S}$ topologically generates $\CalO^{\prec}(G)^{\rm ab/tor}$ $( \subseteq G^{\rm ab/tor} )$ [cf.\ \cite{Hoshi1}, Definition 3.10, (ii)]. Moreover, for every positive integer $n$, since $\CalO^{\prec}(G)^{\rm ab/tor} / p(G)^n\CalO^{\prec}(G)^{\rm ab/tor}$ is a finite $p(G)$-group [cf.\ \cite{Hoshi1}, Proposition 3.11, (i)], ${\{z_i\} }_{i \in S}$ is also a generator of $\CalO^{\prec}(G)^{\rm ab/tor}$ even if we regard $\CalO^{\prec}(G)^{\rm ab/tor}$ as a $\bZ_{p(G)}$-module. Next, let us observe that it follows from the relation (ii) of Proposition \ref{proposition:1.1} that the image of $\tau$ in $G^{\rm ab/tor}$ is trivial. Thus, it follows from the relation (iii) of Proposition \ref{proposition:1.1} that the relation $1={z_0}^{H}{z_1}^{{p(G)}^s}$ in $\CalO^{\prec}(G)^{\rm ab/tor}$ holds for some nonzero [cf.\ the second display of Proposition \ref{proposition:1.1}, (iii)] integer $H$. Therefore, if we write $T \defeq S \backslash \{0\}$, then ${\{z_i \otimes 1 \} }_{i \in T}$ is a generator of $\bQ_{p(G)}$-vector space $\CalO^{\prec}(G)^{\rm ab/tor} \otimes_{\bZ_{p(G)}}  \bQ_{p(G)}$. Here, let us observe that we have a natural topological isomorphism $k_{+}(G) \stackrel{\sim}{\to} \CalO^{\prec}(G)^{\rm ab/tor} \otimes_{\bZ_{p(G)}}  \bQ_{p(G)}$, by definition, that maps $y_i \in k_{+}(G)$ to $z_i \otimes 1 \in  \CalO^{\prec}(G)^{\rm ab/tor} \otimes_{\bZ_{p(G)}} \bQ_{p(G)}$. This isomorphism is also an isomorphim of $\bQ_{p(G)}$-vector spaces by construction. Moreover, since $k_{+}(G) \simeq \CalO^{\prec}(G)^{\rm ab/tor} \otimes_{\bZ_{p(G)}}  \bQ_{p(G)}$ is a $\bQ_{p(G)}$-vector space of dimension $d(G)$ [cf.\ Lemma \ref{lemma:1.2}], ${\{{z_i} \otimes 1 \} }_{i \in T}$ is a basis of the $\bQ_{p(G)}$-vector space $\CalO^{\prec}(G)^{\rm ab/tor} \otimes_{\bZ_{p(G)}}  \bQ_{p(G)}$. Therefore, it follows from the condition imposed on the isomorphism $k_{+}(G) \stackrel{\sim}{\to} \CalO^{\prec}(G)^{\rm ab/tor} \otimes_{\bZ_{p(G)}}  \bQ_{p(G)}$ that ${\{y_i\} }_{i \in T}$ is a basis of the $\bQ_{p(G)}$-vector space $k_{+}(G)$. 
+\end{proof}
+
+\begin{lem}\label{lemma:1.4} 
+The element $y_{d(G)-1}$ is a $nonzero$ element of $k_{+}(G)$. 
+\end{lem}
+\begin{proof} 
+This follows from Lemma \ref{lemma:1.3}. 
+\begin{comment}
+From the relation (\ref{lemma:1.3:eq:1}) in the proof of Lemma \ref{lemma:1.3}, $y_0$ and $y_1$ are linearly dependent. Suppose that $y_{d-1} = 0$. Since $y_0$ and $y_1$ are linearly dependent and $y_{d-1} = 0$, the dimension of the subspace spanned by $y_0, \dots, y_d$ is less than $(d+1)-2 = d-1$. From Lemma \ref{lemma:1.3} and the previous discussion, the dimension of $k_+(G)$ is less than $d-1$. This contradicts Lemma \ref{lemma:1.2}. 
+First, we assume that $y_{d(G)-1} = 0$ and $d(G) = 2$. Since $\Ker(\CalO^{\times}(G) \rightarrow k_{+}(G)) = \CalO^{\prec 1}(G)_{\rm tor}$ [cf. \cite{Hoshi1}, Lemma 1.2, (v)], we conclude from the assumption that $y_{d(G) - 1} = 0$ that $x_{d(G)-1} \in \CalO^{\prec 1}(G)_{\rm tor}$. Thus, $z_{d(G)-1} = z_1$ is the identity element. In paticular, it follows from the condition of ${\{z_i\} }_{i \in S}$ [cf. Lemma \ref{lemma:1.3}] that $z_0$ is the identity element. Thus, $y_2$ is the only nontrivial element of ${\{y_i\} }_{i \in S}$. However this contradicts the fact that $k_{+}(G)$ is a $\bQ_{p(G)}$-vector space of dimension 2 [cf. \cite{Hoshi1}, Proposition 3.11, (iv)]. 
+Next, we assume that $y_{d(G)-1} = 0$ and $d(G) > 2$. Since $y_0$ and $y_1$ are linearly dependent [cf. the relation (\ref{lemma:1.3:eq:1}) in the proof of Lemma \ref{lemma:1.3}], and $y_{d(G)-1} = 0$, the number of linearly independent elements of ${\{y_i\} }_{i \in S}$ is less than $d(G)-1$. It contradicts the fact that $k_{+}(G)$ is a $\bQ_{p(G)}$-vector space of dimension $d(G)$ [cf. \cite{Hoshi1}, Proposition 3.11, (iv)]. Since $y_{d(G)-1} = 0$, together with Lemma \ref{lemma:1.3}, ${\{y_i\} }_{i \in S \backslash (d(G)-1)}$ is a basis of the $\bQ_{p(G)}$-vector space $k_{+}(G)$. However, since $y_0$ and $y_1$ are linearly dependent [cf. the relation (\ref{lemma:1.3:eq:1}) in the proof of Lemma \ref{lemma:1.3}], ${\{y_i\} }_{i \in S \backslash (d(G)-1)}$ is not a basis of the $\bQ_{p(G)}$-vector space $k_{+}(G)$. This is cleary a contradiction.  
+\end{comment}
+\end{proof}
+
+\begin{theorem}\label{theorem:1.5}
+ Let $G$ be a group of MLF-type.  Suppose that $p(G)$ is odd, and that $d(G)$ is even.  Then there exists an automorphism $\alpha$ of $G$ such that, for each positive integer $n$, if one writes $\alpha^n_+$ for the automorphism of the $\mathbb{Q}_{p(G)}$-vector space $k_+(G)$ induced by $\alpha^n$, then $\alpha^n_+ \neq \mathrm{id}$, and, moreover, the equality $(\alpha^n_{+}- {\rm id})^2 = 0$ in the ring of endomorphisms of $k_+(G)$ holds.  
+\begin{proof} 
+Let $\alpha$ be an automorphism of $G$ as in the discussion preceding \cite{NSW}, Theorem 7.5.15, i.e., defined by the equalities $\alpha(\sigma) = \sigma$, $\alpha(\tau) = \tau$, $\alpha(x_{d(G)}) = x_{d(G)} x_{d(G)-1}$, and $\alpha(x_i) = x_i$ for $i\in S \backslash \{d(G)\}$. First, we prove that, for each positive integer $n$, $\alpha_+^n \neq {\rm id}$. If $\alpha_+^n = {\rm id}$, then $y_{d(G)} = \alpha^n_+(y_{d(G)}) = y_{d(G)} + ny_{d(G)-1}$, which thus implies that $y_{d(G)-1} = 0$ in $k_{+}(G)$. However, this contradicts Lemma \ref{lemma:1.4}. Thus, we conclude that $\alpha_+^n \neq {\rm id}$. Next, let us observe that  it follows from the easily verified equality $(\alpha^n_+ - {\rm id})^2 (y_i) = 0$ for every $i \in S$ and Lemma \ref{lemma:1.3} that the equality $(\alpha^n_+- {\rm id})^2 = 0$ in $\End(k_+(G))$ holds, as desired. This completes the proof of Theorem \ref{theorem:1.5}. 
+\end{proof}
+\end{theorem}
+
+\begin{remark}
+Let $H$ be a group of MLF-type such that $p(H)$ is odd.  Then it follows from Theorem \ref{theorem:1.5} that if $d(H)$ is even, then there exists an outer automorphism of $H$ of infinite order, which thus implies that the outer automorphism group of $H$ is infinite.  On the other hand, one verifies immediately that similar arguments to the arguments applied in the present \S \ref{section1} yield a proof of the assertion that the outer automorphism group of $H$ is infinite whenever $d(G) > 1$.  We leave the routine details to the interested reader.  
+\end{remark}
+
+\section{The outer automorphism group of the absolute Galois group of an absolutely abelian MLF of even degree}\label{section2}
+
+In the present \S\ref{section2}, we prove the main results of the present paper [cf.\ Theorem~\ref{theorem:2.8} below and Corollary~\ref{corollary:2.9} below]. In  the present \S \ref{section2}, let $k$ be an MLF and $\overline{k}$ an algebraic closure of $k$. 
+We shall write
+\begin{itemize}
+  \item $G_k \defeq \mathrm{Gal}(\overline{k}/k)$ for the absolute Galois group of $k$ determined by the algebraic closure $\overline{k}$, 
+  \item $\CalO_k$ for the ring of integers of $k$,
+  \item $p_k$ for the residue characteristic of $k$,
+  \item $k^{(d=1)} \subseteq k$ for the [uniquely determined] minimal MLF contained in $k$,
+  \item $d_k = [k:k^{(d=1)}]$ for the degree of the finite extension $k/k^{(d=1)}$, 
+  \item ${\rm Nm}_{k/k^{(d=1)}}\colon k^\times \to (k^{(d = 1)})^\times $ for the Norm map with respect to the finite extension $k/k^{(d=1)}$, 
+  \item ${\rm Tr}_{k/k^{(d=1)}}\colon k_+ \to k^{(d = 1)}_+ $ for the Trace map with respect to the finite extension $k/k^{(d=1)}$,  
+  \item ${\rm log}_k \colon \CalO^{\times}_k \rightarrow k_+$ for the $p_k$-adic logarithm, and 
+  \item $\mathcal{I}_k$ for the log-shell of $k$. 
+\end{itemize}
+Write $\mathrm{Aut}(k)$ for the group of automorp;hisms of the field $k$ and $\mathrm{Out}(G_k)$ for the group of outer automorphisms of the group $G_k$.  Thus, we have a natural injective [cf.\ \cite{Hoshi1}, Proposition 2.1] homomorphism $\mathrm{Aut}(k) \hookrightarrow \mathrm{Out}(G_k)$ of groups.  In the present \S \ref{section2}, let us regard $\mathrm{Aut}(k)$ as a subgroup of $\mathrm{Out}(G_k)$:  
+\[
+\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k).  
+\]
+Write, moreover, $\mathrm{Aut}(G_k)$, $\mathrm{Aut}(k_+)$, and $\mathrm{Aut}(k^\times)$ for the groups of automorphisms of the group $G_k$, the module $k_+$, and the module $k^\times$, respectively.  Thus, it follows from \cite{Hoshi1}, Proposition 3.11, (i), (iv), that we have homomorphisms 
+\begin{equation}
+\Aut(G_k) \longrightarrow \Aut(k_+), \ \Aut(G_k) \longrightarrow \Aut(k^\times). \nonumber
+\end{equation}
+In the present \S \ref{section2}, suppose, moreover, that $p_k$ is odd, and that $d_k$ is even.
+
+\begin{definition}\label{definition:2.1}    
+       \ \ \ 
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+   \item[\rm (i)]  We shall say that $\alpha \in \Aut(k_+)$ is $(\bQ_{p_k})_+$-{\it characteristic} if $\alpha(k^{(d=1)}_+) = k^{(d=1)}_+$. \label{definition:2.1:statement1} 
+   \item[\rm (ii)] We shall say that $\alpha \in \Aut(k_+)$ is $(\bQ_{p_k})_+$-{\it preserving} if $\alpha$ is $(\bQ_{p_k})_+$-characteristic, and $\left. \alpha \right|_{k^{(d=1)}_+}$ is the dentity automorphism of $k_+^{(d=1)}$.  \label{definition:2.1:statement:2} 
+   \item[\rm (iii)]  We shall say that $\alpha \in \Aut(k_+)$ is {\it group-theoretic} if $\alpha$ is contained in the image of the first homomorphism $\Aut(G_k) \to \Aut(k_+)$ of the above display. \label{definition:2.1:statement:3} 
+\item[\rm (iv)]  We shall say that $\alpha \in \Aut(k^{\times})$ is {\it group-theoretic} if $\alpha$ is contained in the image of the second homomorphism $\Aut(G_k) \to \Aut(k^\times)$ of the above display. \label{definition:2.1:statement:4}    
+   \item[\rm (v)]  We shall say that $\alpha \in \Aut(G_k)$ is $(\bQ_{p_k})_+$-{\it characteristic} if the group-theoretic automorphism of $k_+$ induced by $\alpha$ is $(\bQ_{p_k})_+$-characteristic. \label{definition:2.1:statement:5} 
+   \item[\rm (vi)] We shall say that $\alpha \in \Aut(G_k)$ is $(\bQ_{p_k})_+$-{\it preserving} if the group-theoretic automorphism of $k_+$ induced by $\alpha$ is $(\bQ_{p_k})_+$-preserving.  \label{definition:2.1:statement:6} 
+\end{enumerate}
+\end{definition}
+
+\begin{lem}\label{lemma:2.2}
+Let $\alpha$ be an automorphism of $G_k$.  Write $\alpha_+ \in \mathrm{Aut}(k_+)$ and $\alpha^{\times} \in \mathrm{Aut}(k^{\times})$ for the respective group-theoretic automorphisms induced by $\alpha$. Then the following hold:
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+   \item[\rm (i)] The automorphism $\alpha^\times$ fits into the commutative diagram of modules
+\[
+\begin{tikzcd}
+k^\times \arrow[rr, "{\rm Nm}_{k/k^{(d=1)}}"] \arrow[d, "\alpha^\times"'] && {k^{(d=1)}}^\times \arrow[d, equal] \\
+k^\times \arrow[rr, "{\rm Nm}_{k/k^{(d=1)}}"']                         && {k^{(d=1)}}^\times.                
+\end{tikzcd}
+\]
+In particular, the automorphism $\alpha^{\times}$ restricts to an  automorphism of \ ${\rm Ker}({\rm Nm}_{k/k^{(d=1)}})$, i.e., the equality $\alpha^{\times}({\rm Ker}({\rm Nm}_{k/k^{(d=1)}})) = {\rm Ker}({\rm Nm}_{k/k^{(d=1)}})$ holds. \label{lemma:2.2:statement:1}
+   \item[\rm (ii)] Suppose that $k$ is absolutely Galois, i.e., that $k$ is Galois over $k^{(d=1)}$ [cf.\ \cite{Hoshi2}, Definition 4.2, (i)]. Then the automorphism $\alpha_{+}$ fits into the commutative diagram of modules
+\[
+\begin{tikzcd}
+k_{+} \arrow[rr, "{\rm Tr}_{k/k^{(d=1)}}"] \arrow[d, "\alpha_{+}"'] && k^{(d=1)}_+ \arrow[d, equal] \\
+k_{+} \arrow[rr, "{\rm Tr}_{k/k^{(d=1)}}"']                         && k^{(d=1)}_+.                
+\end{tikzcd}
+\]
+In particular, the automorphism $\alpha_+$ restricts to an  automorphism of \ ${\rm Ker}({\rm Tr}_{k/k^{(d=1)}})$, i.e., the equality $\alpha_+({\rm Ker}({\rm Tr}_{k/k^{(d=1)}})) = {\rm Ker}({\rm Tr}_{k/k^{(d=1)}})$ holds.
+\end{enumerate} \label{lemma:2.2:statement:2}
+\end{lem}
+
+\begin{proof}
+Assertion (i) follows immediately from \cite{Hoshi2}, Theorem 4.13, (i), and \cite{Hoshi2}, Proposition 4.9, (i) [cf.\ also \cite{Hoshi2}, Remark 4.12.1]. Next, we verify assertion (ii). It follows from assertion (i) that 
+\[
+\prod_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} \sigma(\alpha^\times(x)) = \prod_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} \sigma(x) \;\;\; (x \in k^{\times}), 
+\] 
+which implies that 
+\[
+\sum_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} {\rm log}_k\circ \sigma(\alpha^\times(x)) = \sum_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} {\rm log}_k\circ \sigma(x) \;\;\; (x \in \mathcal{O}_k^\times). 
+\] 
+In particular, since the $p$-adic logarithm is compatible with the natural action of $ {\rm Gal} (k/ k^{(d=1)})$, we get the equality 
+\[
+\sum_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} \sigma({\rm log}_k \circ \alpha^\times(x)) = \sum_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} \sigma({\rm log}_k(x)) \;\;\; (x \in \mathcal{O}_k^\times). 
+\] 
+Now let us recall that it follows from  the construction of $\alpha_+$ [cf.\ \cite{Hoshi1}, Definition 3.10, (vi)] and the definition of log-shell that the diagram
+\[
+\begin{tikzcd}
+\mathcal{O}_k^{\times} \arrow[r, "{\rm log}_k"] \arrow[d, "\alpha^{\times}"'] & \CalI_k \arrow[d, "\alpha_{+}"] \\
+\mathcal{O}_k^{\times} \arrow[r, "{\rm log}_k"']                              & \CalI_k             
+\end{tikzcd}
+\]
+commutes. Therefore, we get the equality 
+\[
+\sum_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} \sigma(\alpha_{+}({\rm log}_k(x))) = \sum_{\sigma \in {\rm Gal} (k/ k^{(d=1)})} \sigma({\rm log}_k(x)) \;\;\; (x \in \mathcal{O}_k^\times).
+\] 
+Now, let us observe that this equality implies that $\alpha_{+}$ is compatible with the Trace map with respect to the finite extension $k/k^{(d=1)}$ on $p_k \mathcal{I}_k$. 
+Since, for an arbitrary $x \in k_+$, there exists an integer $n$ such that $p_k^{n}x \in p_k \mathcal{I}_k$ [cf.\ \cite{Hoshi1}, Lemma 1.2, (vi)], we conclude that $\alpha_{+} $ is compatible with the Trace map on $k_{+}$. 
+\end{proof}
+
+\begin{lem}\label{lemma:2.3}
+Let $K$ be a field and $L$ a finite Galois extension of $K$ of extension degree invertible in $L$. Let $\alpha$ be an automorphisim of the module $L_+$ which is compatible with the natural action of ${\rm Gal} (L/K)$ and fits into the commutative diagram of modules 
+\[
+\begin{tikzcd}
+L_{+} \arrow[rr, "{\rm Tr}_{L/K}"] \arrow[d, "\alpha"'] && K_+ \arrow[d, equal] \\
+L_{+} \arrow[rr, "{\rm Tr}_{L/K}"']                         && K_+,                
+\end{tikzcd}
+\]
+where we write ${\rm Tr}_{L/K}$ for the Trace map with respect to the finite extension $L/K$. 
+Then $\alpha$ restricts to the identity automorphism of $K_+$.  
+\end{lem}
+\begin{proof}
+Write $\beta \defeq \alpha - {\rm id} \in \End(L_+)$. Then it is immediate that the sequence 
+\[
+\begin{tikzcd}
+0 \arrow[r] & \mbox{Ker}(\beta) \arrow[r] & L_{+} \arrow[r] & \mbox{Im}(\beta) \arrow[r] & 0, 
+\end{tikzcd}
+\]
+hence also [cf.\ our assumption that $\alpha$ is compatible with the natural action of $\mathrm{Gal}(L / K)$] the sequence 
+\[
+\begin{tikzcd}
+0 \arrow[r] & {\mbox{Ker}(\beta)}^{{\rm Gal}(L/K)} \arrow[r] & K_+ \arrow[r] & {\mbox{Im}(\beta)}^{{\rm Gal}(L/K)}, 
+\end{tikzcd}
+\]
+is exact. 
+Now observe that it follows from the commutative diagram in the statement of Lemma \ref{lemma:2.3} and the definition of $\beta$ that the image of ${\Im(\beta)}^{{\rm Gal}(L/K)}$ by $\mathrm{Tr}_{L / K}$ is zero. Thus, since $\mbox{Im}(\beta)$ is contained in $K_+$, and the degree of the finite extension $L / K$ is invertible in $L$, we conclude that ${\mbox{Im}(\beta)}^{{\rm Gal}(L/K)} = \{0\}$.  In particular, it follows from the above exact sequence that $\Ker(\beta)^{{\rm Gal}(L/K)} = K_{+}$, which implies that $\alpha(x) = x$ for each $x \in K_+$. This completes the proof of Lemma \ref{lemma:2.3}.  
+\end{proof}
+
+\begin{theorem}\label{theorem:2.4}
+Let $k$ be an MLF and $\alpha$ an automorphism of $G_k$. Suppose that $p_k$ is odd, and that $d_k = 2$. Write $\alpha_+ \in \mathrm{Aut}(k_+)$ for the group-theoretic automorphism induced by $\alpha$. Then the following are equivalent: 
+   \begin{enumerate}[label=(\arabic*),ref=(\arabic*)]
+   	\item[\rm (1)] The automorphism $\alpha_+$ is $(\bQ_{p_k})_+$-preserving. \label{theorem:2.4:statement:1}
+   	\item[\rm (2)] The automorphism $\alpha_+$ is $(\bQ_{p_k})_+$-characteristic. \label{theorem:2.4:statement:2}
+   	\item[\rm (3)] The automorphism $\alpha_{+}$ is compatible with the natural action of ${\rm Gal} (k/k^{(d=1)})$ on $k_{+}$. \label{theorem:2.4:statement:3}
+   \end{enumerate}
+
+\end{theorem}
+
+\begin{proof}
+First, (1)$\Longrightarrow$(2) is immediate. Next, we verify (2)$\Longrightarrow$(3). 
+\begin{comment}
+We can write $k=k^{(d=1)}(\sqrt{a})$ for some a $\in k^{(d=1)}$. Since assertion (ii) holds and $\alpha_{+}$ is a isomorphism of $\bQ_{p_k}$-vector spaces, $\alpha_{+}(x+y \sqrt{a}) = x + y'\sqrt{a}$ for some $y' \in k^{(d=1)}$. Thus, $\sigma( \alpha_{+}(x+y \sqrt{a}) ) = \sigma(x + y'\sqrt{a} ) = x - y'\sqrt{a} = \alpha(\sigma(x+y\sqrt{a}))$. This completes the proof of (2)$\Longrightarrow$(3). 
+\end{comment}
+Suppose that (2) is satisfied.  Let us first observe that one may write $k = k^{(d=1)}(\sqrt{a})$ for some $a \in k^{(d=1)}$.  Since (2) is satisfied, $\alpha_+(1) = b$ for some $b \in k^{(d=1)}$.  Moreover, it follows from the final portion of Lemma \ref{lemma:2.2:statement:1}, (ii), that $\alpha_+(\sqrt{a}) = c \sqrt{a}$ for some $c \in k^{(d=1)}$. Thus, since $\alpha_+$ is an automorphism of $\bQ_{p_k}$-vector space, it follows that, for arbitrary $x$, $y \in k^{(d=1)}$, the equalities 
+\[
+\sigma(\alpha_{+}(x+y \sqrt{a})) = \sigma(bx + cy\sqrt{a}) =  \alpha_+(\sigma(x+y\sqrt{a})) \ \ \ (\sigma \in {\rm Gal}(k/k^{(d=1)}))
+\]
+hold. This completes the proof of (2)$\Longrightarrow$(3). 
+Finally, (3)$\Longrightarrow$(1) follows immediately from Lemma \ref{lemma:2.2:statement:2}, (ii), and Lemma \ref{lemma:2.3}. 
+\end{proof}
+
+\begin{lem}\label{lemma:2.5}
+Suppose that $d_k = 2$. Then there exists an automorphism $\alpha \in {\rm Aut}(G_k)$ such that, for every positive integer $n$, $\alpha^n$ is not $(\bQ_{p_k})_{+}$-characteristic. 
+\end{lem}
+\begin{proof}
+It follows from Theorem \ref{theorem:1.5} that there exists a group-theoretic automorphism $\alpha_{+} \in \Aut(k_+)$ such that, for every positive integer $n$, $\alpha_+^n$ is not the identity automorphism but satisfies the equality  $(\alpha^n_{+} -{\rm id})^2 = 0$ in $\End(k_+)$. 
+Here, let us observe that we can write $k = k^{(d=1)}(\sqrt{a})$ for some $a \in k^{(d=1)}$. 
+Assume that $\alpha^n_+$ is $(\bQ_{p_k})_{+}$-characteristic for some positive integer $n$. 
+Thus, $\alpha_+(1) = b$ for some $b \in k^{(d=1)}$.  Moreover, it follows from the final portion of Lemma \ref{lemma:2.2}, (ii), that $\alpha_+(\sqrt{a}) = c\sqrt{a}$ for some $c \in k^{(d=1)}$.  Thus, since $\alpha_+$ is an automorphism of $\bQ_{p_k}$-vector space, it follows that, for arbitrary $x$, $y \in k^{(d=1)}$, the equalities 
+\begin{eqnarray}
+0 = (\alpha^n_{+} -{\rm id})^2(x+y\sqrt{a}) = x (b - 1)^2 + y (c-1)^2 \sqrt{a}  \nonumber
+\end{eqnarray}
+hold. Thus, we have $(b, c) = (1, 1)$. 
+In particular, $\alpha^n_{+}$ is the identity automorphism. However, this is a contradiction. 
+\end{proof}
+
+\begin{remark}\label{remark:2.6}
+One may conclude from Lemma \ref{lemma:2.5} that 
+it is impossible to establish a group-theoretic 
+reconstruction algorithm for constructing, from a group 
+$G$ of MLF-type, a submodule of the module $k_+(G)$ 
+which ``corresponds'' to the submodule $k^{(d=1)}_+ 
+\subseteq k_+$ of $k_+$.  Put another way, one may 
+conclude from Lemma \ref{lemma:2.5} that the 
+submodule $k^{(d=1)}_+ \subseteq k_+$ of $k_+$ should 
+be considered to be ``not group-theoretic''.  
+\end{remark}
+
+
+\begin{lem}\label{lemma:2.7}
+Let $\alpha$ be an automorphism of $G_k$. Suppose that $k$ is absolutely abelian, i.e., that $k$ is Galois over $k^{(d=1)}$, and, moreover, the Galois group ${\rm Gal}(k/k^{(d=1)})$ is abelian [cf.\ \cite{Hoshi2}, Definition 4.2, (ii)]. Then the following hold: 
+\begin{comment}
+Let $k$ be an absolutely abelian [cf.\ \cite{Hoshi2}, Definition 4.2, (ii)] MLF such that $d_k$ is even and $p_k > 2$ and $\alpha \in {\rm Aut}(G_k)$ an automorphism of $G_k$. Write $\alpha_{+} \in {\rm Aut}(k_{+})$ for the group-theoretic automorphism induced by $\alpha$. Then the following hold: 
+\end{comment} 
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+	\item[\rm (i)] There exists a quadratic extension $k'$ of $k^{(d = 1)}$ contained in $k$  such that $G_k$ is a characteristic subgroup of $G_{k'} \defeq {\rm Gal}(\overline{k}/k')$. In particular, we have a natural homomorphism $\phi \colon {\rm Aut}(G_{k'}) \rightarrow {\rm Aut}(G_k)$. \label{lemma:2.7:statement:1} 
+    \item[\rm (ii)] Let $k'$ be a quadratic exension of $k$ as in assertion (i) and $\alpha'$ an automorphism of $G_{k'}$ which is not $(\bQ_{p_k})_+$-characteristic. Then $\phi(\alpha') \in {\rm Aut}(G_k)$ [cf.\ (i)] is not $(\bQ_{p_k})_+$-characteristic. \label{lemma:2.7:statement:2}
+    \item[\rm (iii)] If $\alpha$ is not $(\bQ_{p_k})_+$-characteristic, then the image of $\alpha$ in ${\rm Out}(G_k)$ is not contained in ${\rm N}_{{\rm Out}(G_k)}({\rm Aut}(k))$. \label{lemma:2.7:statement:3}
+\end{enumerate}
+\end{lem}
+\begin{proof}
+First, we verify assertion (i). Since the MLF $k$ is absolutely abelian, and $d_k$ is even, ${\rm Gal}(k/k^{(d=1)})$ is a finite abelian group of even order. Thus, it follows immediately from elementary group theory and Galois theory that there exists a quadratic extension $k'$ of $k^{(d=1)}$ contained in $k$. Next, we verify that $G_k$ is a characteristic subgroup of $G_{k'}$. Let $\beta$ be an automorphism of $G_{k'}$. Since $k$ is absolutely abelian, $k$ is Galois-specifiable [cf.\ \cite{Hoshi2}, Theorem F, (i), and \cite{Hoshi2},  Definition 6.1]. Thus, it follows from Galois theory that there exists $\tau \in {\rm Gal}(\overline{k}/k^{(d=1)})$ such that $\beta(G_k)=\tau G_k \tau^{-1} \subseteq G_{k'}$. Moreover, since $k$ is absolutely abelian, $G_k$ is a normal subgroup of ${\rm Gal}(\overline{k}/k^{d=1})$. In particular, we get $\beta(G_k) = \tau G_k \tau^{-1} = G_k$. This completes the proof of assertion (i).
+
+Next, we verify assertion (ii). Let us first observe that it follows immediately from the various definitions involved that the diagram 
+\[
+\begin{tikzcd}
+k^{(d=1)}_+ \arrow[r, hook] \arrow[d, "\left. \phi(\alpha')_+ \right|_{k^{(d=1)}_+}"'] & k'_+ \arrow[r, hook] \arrow[d, "\alpha'_+"'] & k_+ \arrow[d, "\phi(\alpha')_+"'] \\
+\alpha'_+(k^{(d=1)}_+) \arrow[r, hook]                                                 & k'_+ \arrow[r, hook]                               & {k_+}                    
+\end{tikzcd}
+\]
+commutes, where the horizontal arrows are the natural inclusions, and we write $\alpha'_+$ (resp.\ $\phi(\alpha')_+$) for the group-theoretic automorphism induced by $\alpha' \in \Aut(G_{k'})$ (resp.\ $\phi(\alpha') \in \Aut(G_k)$). 
+Since $\alpha'_+$ is not $(\bQ_{p_k})_+$-characteristic, $\alpha'_+(k_+^{d=1}) \neq k_+^{d=1}$. 
+Thus, we conclude that $\phi(\alpha')_+$, hence also $\phi(\alpha')$, is not $(\bQ_{p_k})_+$-characteristic. This completes the proof of assertion (ii). 
+
+Finally, we verify assertion (iii). 
+Suppose that the image of $\alpha$ in ${\rm Out}(G_k)$ is contained in ${\rm N}_{{\rm Out}(G_k)}({\rm Aut}(k))$. Now since $k$ is absolutely abelian, let us recall from \cite{Hoshi2}, Theorem 7.2, (ii), that ${\rm N}_{{\rm Out}(G_k)}({\rm Aut}(k)) = {\rm Z}_{{\rm Out}(G_k)}({\rm Aut}(k))$. Thus, $\alpha_+$ is compatible with the natural action of ${\rm Gal}(k/k^{d=1}) = \Aut(k)$ on $k_{+}$. 
+In particular, it follows from Lemma~\ref{lemma:2.2}, (ii), and Lemma~\ref{lemma:2.3} that $\alpha$ is $(\bQ_{p_k})$-preserving, hence also $(\bQ_{p_k})$-characteristic. This completes the proof of assertion (iii).  
+\end{proof}
+
+\begin{theorem}\label{theorem:2.8}
+Let $k$ be an absolutely abelian MLF such that $p_k$ is odd, and $d_k$ is even. Then the following hold: 
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+\item[\rm (i)] There exists an automorphism $\alpha \in {\rm Aut}(G_k)$ such that, for each positive integer $n$, $\alpha^n$ is not $(\bQ_{p_k})_+$-characteristic. \label{theorem:2.8:statement:1} 
+    \item[\rm (ii)] The set of ${\rm Out}(G_k)$-conjugates of the subgroup ${\rm Aut}(G) \subseteq {\rm Out}(G_k)$ is infinite. \label{theorem:2.8:statement:2}  
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Assertion (i) follows from Lemma \ref{lemma:2.5} and Lemma \ref{lemma:2.7}, (i), (ii). 
+Assertion (ii) follows from assertion (i) and Lemma \ref{lemma:2.7}, (iii). 
+\end{proof}
+
+\begin{corollary}\label{corollary:2.9}
+Let $k$ be an absolutely abelian MLF such that $p_k$ is odd, and $d_k$ is even. Then the following hold: 
+   \begin{enumerate}[label=(\arabic*),ref=(\arabic*)]
+   	\item[\rm (i)] The subgroup ${\rm Aut}(k)$ of ${\rm Out}(G_k)$ is not normal. \label{colloraly:2.9:statement:1}
+   	\item[\rm (ii)] There exist infinitely many distinct [necesarily finite] subgroups of ${\rm Out}(G_k)$ isomorphic to ${\rm Aut}(k)$.  \label{corollary:2.9:statement:2}   
+   \end{enumerate}
+\end{corollary}
+\begin{proof}
+These assertions follow immediately from Theorem \ref{theorem:2.8:statement:2}, (ii). 
+\end{proof}
+
+\begin{remark}\label{remark:2.10}
+Let us recall from \cite{Hoshi2}, Theorem G, (iii), that 
+if $k$ is obtained by adjoining, to $k^{(d=1)}$, a 
+primitive $p_k$-th root of unity and a $p_k$-th root of 
+$p_k$, then the subgroup $\mathrm{Aut}(k) \subseteq 
+\mathrm{Out}(G_k)$ is not normal. 
+\end{remark}
+
+\begin{remark}\label{remark:2.11}
+The issue of whether or not a group-theoretic 
+reconstruction, from the group $G_k$, of the 
+``field-theoretic'' subgroup $\mathrm{Aut}(k) \subseteq 
+\mathrm{Out}(G_k)$ of the outer automorphism group 
+$\mathrm{Out}(G_k)$ can be established is interesting 
+from the point of view of the anabelian geometry of 
+mixed-characteristic local fields.  Now let us recall 
+that if the MLF $k$ is absolutely abelian, then, roughly 
+speaking, one may reconstruct group-theoretically, from 
+the group $G_k$, the set of $\mathrm{Out}(G_k)$-conjugates 
+of the subgroup $\mathrm{Aut}(k) \subseteq 
+\mathrm{Out}(G_k)$ [cf.\ \cite{Hoshi2}, Theorem F, (i), and 
+\cite{Hoshi2}, Theorem 6.12, (ii)].  
+On the other hand, Corollary \ref{corollary:2.9}, (i), implies that if 
+$p_k$ is odd, $d_k$ is even, and $k$ is absolutely abelian, 
+then, roughly speaking, it is impossible to establish a 
+group-theoretic reconstruction of the subgroup 
+$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$ itself [i.e., 
+as opposed to the set of $\mathrm{Out}(G_k)$-conjugates of the 
+subgroup $\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$]. 
+\end{remark}
+
+\begin{corollary}\label{corollary:2.12}
+Let $k$ be an absolutely abelian MLF such that $p_k$ is odd, and $d_k$ is even. Then the following hold: 
+   \begin{enumerate}[label=(\arabic*),ref=(\arabic*)]
+   	\item[\rm (i)] The group of group-theoretic automorphisms of $k_+$ is infinite. \label{colloraly:2.12:statement:1}
+   	\item[\rm (ii)] The image of the natural homomorphism ${\rm Aut}(G_k) \to {\rm Aut}(G_k^{\rm ab})$ is infinite. \label{corollary:2.12:statement:2}
+   	\item[\rm (iii)] The group of group-theoretic automorphisms of $k^\times$ is infinite. \label{corollary:2.12:statement:3}    
+   \end{enumerate}
+\end{corollary}
+\begin{proof}
+Assertion (i) follows from Theorem \ref{theorem:2.8}, (i). 
+Assertion (ii) follows from assertion (i). 
+Assertion (iii) follows from assertion (ii) and  the density of $k^\times(G_k)$ in $G_k^{\rm ab}$ [cf.\ \cite{Hoshi1}, Definition 3.10, (iv)]．
+\end{proof}
+
+\begin{remark}\label{remark:2.13}
+Let us recall that it follows immediately from 
+\cite{Hoshi2}, Corollary 5.5, that each of the three 
+groups discussed in Corollary \ref{corollary:2.12}, 
+(i), (ii), (iii), in the case where the ``$d_k$'' is
+equal to $1$ is trivial.
+\end{remark}
+
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+The first author was supported by JSPS KAKENHI Grant Number 18K03239.  
+This research was supported by the Research Institute for Mathematical 
+Sciences, an International Joint Usage/Research Center located in Kyoto 
+University. The second author would like to express a deepest gratitude to Hiroki Nishio and Keiko Nishio, for giving him constant support, warm encouragements. 
+\end{abstract}
+
+\begin{thebibliography}{99}
+
+\bibitem{Hoshi1}
+Y. Hoshi, Introduction to mono-anabelian geometry, to appear in Proceedings of the conference ``Fundamental Groups in Arithmetic Geometry'', Paris, France 2016.
+
+\bibitem{Hoshi2}
+Y. Hoshi, Topics in the anabelian geometry of mixed-characteristic local fields, Hiroshima Math. J. 49 (2019), no. 3, 323–398.
+
+\bibitem{Hoshi4}
+Y. Hoshi, Mono-anabelian reconstruction of number fields, RIMS K\^oky\^uroku Bessatsu B76 (2019), 1--77.
+
+\bibitem{NSW}
+J. Neukirch, A. Schmidt, and K. Wingberg, Cohomology of number fields, Second edition.
+Grundlehren der Mathematischen Wissenschaften, 323. Springer-Verlag, Berlin, 2008.
+
+\end{thebibliography}
+
+
+\end{document}

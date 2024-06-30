@@ -1,0 +1,875 @@
+\documentclass[dvipdfmx,19.8pt]{beamer}
+\usepackage{bxdpx-beamer}% dvipdfmxなので必要
+
+\newcommand{\Red}{\color{red}}
+\newcommand{\Blue}{\color{blue}}
+\newcommand{\Green}{\color{darkgreen}}
+\newcommand{\Purple}{\color{purple}}
+\newcommand{\Brown}{\color{brown}}
+\newcommand{\Alert}{\color{alert}}
+
+
+
+% pdfの栞の字化けを防ぐ
+% \AtBeginDvi{\special{pdf:tounicode EUC-UCS2}}
+% テーマ
+\usetheme{CambridgeUS}
+% navi. symbolsは目立たないが，dvipdfmxを使うと機能しないので非表示に
+\setbeamertemplate{navigation symbols}{} 
+
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{comment}
+\usepackage{tikz-cd}
+
+
+\usepackage{latexsym}
+\def\qed{\hfill $\Box$}
+
+
+% フォントはお好みで
+
+\usepackage{txfonts}
+\mathversion{bold}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\setbeamerfont{title}{size=\large,series=\bfseries}
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+\setbeamertemplate{frametitle}[default][center]
+\usefonttheme{professionalfonts} 
+
+
+\theoremstyle{theorem}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lem}[theorem]{Lemma}
+\newtheorem{introtheorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+
+\def\bN{{\mathbb N}}
+\def\bZ{{\mathbb Z}}
+\def\bQ{{\mathbb Q}}
+\def\bR{{\mathbb R}}
+\def\bC{{\mathbb C}}
+\def\bF{{\mathbb F}}
+\def\bK{{\mathbb K}}
+
+\def\frkg{{\mathfrak g}}
+\def\frkh{{\mathfrak h}}
+\def\frkk{{\mathfrak k}}
+\def\frkr{{\mathfrak r}}
+\def\frks{{\mathfrak s}}
+
+\def\frkgl{{\mathfrak {gl}}}
+\def\frksl{{\mathfrak {sl}}}
+\def\frksp{{\mathfrak {sp}}}
+\def\frkso{{\mathfrak {so}}}
+
+\def\scrL{{\mathscr L}}
+\def\scrF{{\mathscr F}}
+
+\def\bQbar{{\overline{\mathbb Q}}}
+
+\def\Xbar{{\overline{X}}}
+\def\Zp{{{\mathbb Z}_p}}
+\def\Qp{{{\mathbb Q}_p}}
+
+\def\an{{\mathrm{an}}}
+\def\alg{{\mathrm{alg}}}
+\def\op{{\mathrm{op}}}
+\def\Gr{{\mathrm{Gr}}}
+
+\def\CalB{{\mathcal B}}
+\def\CalF{{\mathcal F}}
+\def\CalM{{\mathcal M}}
+\def\CalO{{\mathcal O}}
+\def\CalI{{\mathcal I}}
+
+\def\peh{{{\mathcal P}}}
+
+\def\profin{{\widehat{~}}}
+\def\prol{{(\ell)}}
+
+\def\id{{\mathrm{id}}}
+\def\Ker{{\mathrm{Ker}}}
+\def\Im{{\mathrm{Im}}}
+\def\Hom{{\mathrm{Hom}}}
+\def\End{{\mbox{End}}}
+\def\Aut{{\mathrm{Aut}}}
+\def\Inn{{\mathrm{Inn}}}
+\def\Out{{\mathrm{Out}}}
+\def\Gal{{\mathrm{Gal}}}
+\def\Lie{{\mathrm{Lie}}}
+\def\Der{{\mathrm{Der}}}
+
+\def\defeq{ \ {\stackrel{\mathrm{def}}{=}} \ }
+
+\setbeamertemplate{theorems}[numbered]  %% 定理に番号をつける
+
+
+
+
+%
+\title{混標数局所体の絶対ガロア群の外部自己同型群の \\ 
+ 体論的な部分群の非正規性について}
+\author{西尾優}
+\date{}
+
+\begin{document}
+\frame{\titlepage}
+
+\section{slide}
+
+
+\begin{frame}[fragile]
+	\frametitle{記号}
+
+\begin{definition}
+\begin{itemize}
+  \item $p$ : 奇素数,
+  \item $k$ : $\bQ_p$の有限次拡大体, 
+  \item $k_+$ : $k$の下部加法加群,
+  \item $m_k \subseteq \CalO_k \subseteq k $:それぞれ$k$の極大イデアルと整数環, 
+  \item $\log_k : \CalO_k^\times \rightarrow k_+$ : $p$進$\log$関数,   
+  \item $d_k \defeq [k:\bQ_p]$, 
+  \item $f_k \defeq [\CalO_k/m_k : \bF_p ]$, 
+  \item $\CalO_k^{\prec} \subseteq k^\times$ : $k$の主単数群 
+\end{itemize}
+\end{definition}
+
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+	\frametitle{局所体の復元の復習1}
+    
+\begin{definition}
+
+\begin{itemize}
+  \item $\overline{k}$ : $k$の代数閉包, 
+  \item ${\rm Nm}_k \colon k^\times \rightarrow \bQ_p^\times$ : $k/\bQ_p$のノルム写像,  
+  \item ${\rm Tr}_k \colon k_+ \rightarrow (\bQ_p)_+$ : $k/\bQ_p$のトレース写像, 
+  \item $G_k \defeq \mathrm{Gal}(\overline{k}/k)$, 
+  \item $P_k \subseteq G_k$: 暴惰性群. 
+\end{itemize}
+\end{definition}
+
+このとき$G_k$から以下を関手的に復元するあるアルゴリズムが存在する. 
+
+\begin{center}
+$G_k \rightsquigarrow$
+
+
+\begin{tikzcd}
+k^\times \supseteq \CalO_k^\times \arrow[r, "\log_k"] & k_+.
+\end{tikzcd}
+\end{center}
+詳細な復元方法については例えば\cite{Hoshi1}を参照. 
+
+
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+	\frametitle{局所体の復元の復習2}
+
+\begin{prop}\label{injective:prop}
+自然な射 
+\begin{center}
+\begin{tikzcd}
+{\rm Aut}(k) \arrow[r] & {\rm Out}(G_k)
+\end{tikzcd}
+\end{center}
+は単射である. 
+\end{prop}
+{\Blue Proof:}
+先に紹介した復元アルゴリズムから以下の可換図式が得られる. 
+\begin{center}
+\begin{tikzcd}
+{\rm Aut}(k) \arrow[rd, hook] \arrow[r] & {\rm Out}(G_k) \arrow[d] \\
+                                        & {\rm Aut}(k_+)            
+\end{tikzcd}
+\end{center}
+したがって自然な射${\rm Aut}(k) \rightarrow {\rm Out}(G_k)$は単射である. 
+\qed \\ 
+以下この単射で埋め込んだ$\Aut(k)$を$\Out(G_k)$の部分群とみなす. 
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+
+  \frametitle{主定理}
+
+\begin{theorem}
+以下の3つの仮定が満たされているとする. 
+\begin{itemize}
+\item[$(1)$]
+素数$p$は奇素数.   
+\item[$(2)$]
+有限次拡大$k / \mathbb{Q}_p$の拡大次数は偶数. 
+\item[$(3)$]
+有限次拡大$k / \mathbb{Q}_p$はアーベル拡大である. 
+\end{itemize}
+このとき部分群$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$は正規部分群ではない.  
+\end{theorem}
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+
+  \frametitle{感覚的な主定理の主張}
+{\Blue 部分群$\mathrm{Aut}(k) \subseteq \mathrm{Out}(G_k)$が正規部分群でない}ことから, {\Blue $\mathrm{Aut}(k)$が$G_k$から関手的に復元できない}ことがわかる. 
+
+\vspace{\baselineskip}
+
+
+
+仮に復元できたとすると, $G_k$の自己同型から誘導される外部自己同型群の内部自己同型によって以下の図式が可換する. 
+
+
+\vspace{\baselineskip}
+
+
+\begin{center}
+\begin{tikzcd}
+\mathrm{Out}(G_k)  \arrow[r, "\sim"]                 & \mathrm{Out}(G_k)                                                                \\
+\mathrm{Aut}(k) \arrow[u, hook] \arrow[r, "\sim"]  & \mathrm{Aut}(k) \arrow[u, hook] 
+\end{tikzcd}
+\end{center}
+これは$\Aut(k)$が$\Out(G_k)$の正規部分群であることを意味している. 
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+  \frametitle{先行研究}
+
+本研究の先行研究として, \cite{Hoshi2}, Theorem G, (iii) によって以下の事実が知られている. 
+\begin{prop}
+$k=\bQ_p(\zeta_p, p^{\frac{1}{p}})$とする. このとき部分群
+\[
+\Aut(k) \subseteq \Out(G_k)
+\]
+は正規部分群でない. 
+\end{prop}
+
+今回の研究で明らかになったのは$k/\bQ_p$がアーベル拡大の場合であり, 上記の結果は$k/\bQ_p$がアーベル拡大ではない場合の結果である. また\cite{Hoshi2}の中では非正規性だけでなく$\mathrm{N}_{\Out(G_k)}(\Aut(k)) \neq \Aut(k)$であることも合わせて示されている. 
+
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+
+  \frametitle{研究のモチベーション1}
+数体の体構造はその絶対ガロア群から復元されることが知られている.例えば以下の定理が成立する.  
+\begin{theorem}[Neukirch-Uchida]
+$K/\bQ$を有限次拡大体としたとき, 自然な射
+\[
+\Aut(K) \rightarrow \Out(G_K)
+\]
+は全単射である. 
+\end{theorem}
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+
+  \frametitle{研究のモチベーション2}
+局所体については以下の事実が知られている. 
+\begin{prop}
+$k/\bQ_p$を有限次拡大体としたとき, 命題\upshape{ \ref{injective:prop} }の単射
+\begin{tikzcd}
+\Aut(k) \arrow[r, hook] & \Out(G_k)
+\end{tikzcd}
+は一般には全射ではない. 
+\end{prop}
+この命題は例えば Jarden-Ritter の論文\cite{JR}のある結果からしたがう．
+
+
+次の興味として，$\Aut(k)$ が $\Out(G_k)$ の部分群としてどのような性質を持っているのかが気になる．そこで本研究では部分群の性質の一つである正規性についての研究を行った．
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+\begin{prop}[Jannsen-Wingberg]
+$G_k$は$d_k+3$個の, 以下を満たす元$\sigma$, $\tau$, $x_0, \dots, x_{d_k}$で位相的に生成される. 
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+  \item[\rm (1)]  $P_k \subseteq G_k$ は $x_0, \dots, x_{d_k}$によって位相的に正規生成される.
+  \item[\rm (2)]  $\sigma$, $\tau$についての関係式$\sigma \tau \sigma^{-1} = \tau^{p^{f_k}}$が成立する.
+  \item[\rm (3)] 以下の関係式が成立する.  
+\[
+\sigma x_0 \sigma^{-1}
+=
+(x^{h^{{p}-1}}_0 \tau x^{h^{{p}-2}}_0 \tau \cdots x^{h}_0 \tau)^{\frac{\pi g}{{p}-1}}
+x_1^{p^s}
+\delta ,
+\]
+ただし, $s, g, h$ は以下を満たす正の整数.  
+\[
+g(h^{p - 1} + h^{p - 2} + \cdots + h) \neq p - 1, 
+\]
+$\pi$ は $\hat{\bZ} = \prod_q \bZ_q$ の,  $\bZ_q$ ヘの射影が$q = p$のときのみ$1$で, それ以外は$0$になる唯一の元である. さらに$\delta$はある$[G_k,G_k]$の元である.
+
+
+\end{enumerate}
+\end{prop}
+
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+\section{主定理の証明}
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+\begin{definition}
+$i=0, \cdots, d_k$で, $x_i$の$(\CalO_k^{\prec})^{\rm ab/tor}$への像を$z_i$, $k_+$への像を$y_i$とする.  
+
+\begin{center}
+\begin{tikzcd}
+P_k \arrow[d]                                        & k_+                                                &                          & G_k \arrow[d]                     \\
+\CalO_k^{\prec} \arrow[r, hook] \arrow[d, two heads] & \CalO_k^\times \arrow[r, hook] \arrow[u, "\log_k"] & k^\times \arrow[r, hook] & G_k^{\rm ab} \arrow[d, two heads] \\
+(\CalO_k^{\prec})^{\rm ab/tor} \arrow[rrr, hook]     &                                                    &                          & G_k^{\rm ab/tor}                 
+\end{tikzcd}
+\end{center}
+\end{definition}
+
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+\begin{lem}
+$\left\{y_i \right\}_{i=1}^{d_k}$は$k_+$の$\bQ_p$ベクトル空間としての基底になっている. 
+\end{lem}
+{\Blue Proof:}
+
+$\left\{x_i \right\}_{i=0}^{d_k}$が$P_k$を位相的に正規生成している. \\
+$\Rightarrow$ $\left\{z_i \right\}_{i=0}^{d_k}$は$(\CalO_k^{\prec})^{\rm ab/tor}$を位相的に生成している. 
+したがって$\left\{z_i \right\}_{i=0}^{d_k}$は$(\CalO_k^{\prec})^{\rm ab/tor}$を$\bZ_p$加群として生成している. 
+
+
+ここでJannsen-Wingbergの関係式$(2)$から$\tau$は$G_k^{\rm ab/tor}$において自明な元になることに注意する. 
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+Jannsen-Wingbergの関係式$(3)$は$G_k^{\rm ab/tor}$において左辺の共役に掛かっている$\sigma$がキャンセルされ, 右辺の$\tau$は自明であるので, ある$H \in \bZ_p$を用いて$(\CalO_k^{\prec})^{\rm ab/tor}$における以下の式が導かれる. 
+\[
+1={z_0}^{H}{z_1}^{{p}^s}  
+\]
+ここで$s, g, h$の満たす条件式から$H \neq 0$であることに注意する. 
+
+また以下の$\log_k$を用いた同型が存在している.  
+\[
+(\CalO_k^{\prec})^{\rm ab/tor} \otimes_{\bZ_{p}} \bQ_{p} \simeq k_+
+\]
+この同型によって$i=0, \cdots, d_k$で$z_i \otimes 1$はそれぞれ$y_i$に対応している. 
+
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+またここで以下が成立することに注意する. 
+\begin{eqnarray}
+&&1={z_0}^{H}{z_1}^{{p}^s} \nonumber \\
+&\Rightarrow& 0 =H{y_0}+p^s{y_1} \nonumber \\
+&\Rightarrow& y_0 = - \frac{p^s}{H} y_1
+\end{eqnarray}
+ここで$\left\{z_i \right\}_{i=0}^{d_k}$は$\bZ_p$加群としての生成元であるので, $\left\{z_i \otimes 1 \right\}_{i=0}^{d_k}$は$(\CalO_k^{\prec})^{\rm ab/tor} \otimes_{\bZ_{p}} \bQ_{p}$の$\bQ_p$ベクトル空間としての生成元であり, $\left\{y_i \right\}_{i=0}^{d_k}$は$k_+$の$\bQ_p$ベクトル空間としての生成元である. したがって式$(1)$と合わせると$\left\{y_i \right\}_{i=1}^{d_k}$が$k_+$の基底であることがわかる. 
+\qed
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+\begin{corollary}\label{neq:cor}
+$d_k >1$とする. このとき$y_{d_k-1}$は$k_+$の非自明な元である. 
+\end{corollary}
+
+\begin{theorem}\label{unipotent:theorem}
+$p$を奇素数, $d_k > 1$とする. このときある$\alpha \in \Aut(G_k)$が存在して, $\alpha_+ \in \Aut(k_+)$を, 復元アルゴリズムによって得られる自然な準同型$\Aut(G_k) \rightarrow \Aut(k_+)$による$\alpha$の像とするとき, 任意の正の整数$n$に対して以下が成立している. 
+\[
+\alpha^n_+ \neq {\rm id}, \quad (\alpha^n_+ - {\rm id})^2 = 0
+\]
+\end{theorem}
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+{\Blue Proof:}
+$\alpha \in \Aut(G_k)$を, 
+\[
+\sigma \mapsto \sigma, \quad \tau \mapsto \tau, \quad x_i \mapsto x_i \quad (i= 0, \cdots d_k -1), \quad x_{d_k} = x_{d_k} x_{d_k-1}
+\]
+によって定まる$G_k$の自己同型とする. これが実際に自己同型になることは\cite{NSW}, Theorem 7.5.14の後の議論で説明されている. このとき系\ref{neq:cor}から$y_{d_k -1} \neq 0$であるので, 任意の正の整数$n$で, 
+\[
+y_{d_k} \neq y_{d_k} + n y_{d_k -1} = \alpha_+^n(y_{d_k}) 
+\]
+であるので$\alpha_+^n \neq {\rm id}$であることがわかる. 
+
+また任意の$i=1, \cdots, d_k$で, 
+\[
+(\alpha^n_+ - {\rm id})^2 (y_i) = 0
+\]
+が成立している. このことと$\left\{y_i \right\}_{i=1}^{d_k}$が$k_+$の基底であることから$(\alpha^n_+ - {\rm id})^2 = 0$であることがわかる. 
+\qed
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+\begin{lem}\label{lemma:new:2.2}
+$k/\bQ_p$がガロア拡大であるとする. このとき以下の図式が可換する. 
+\[
+\begin{tikzcd}
+\mathcal{O}_k^\times \arrow[r, "{\log}_k"] \arrow[d, "{\rm Nm}_k"'] & k_+ \arrow[d, "{\rm Tr}_k"] \\
+\bZ_p^\times \arrow[r, "{\log}_{\bQ_p}"']                              & (\bQ_p)_+             
+\end{tikzcd}
+\]
+\end{lem}
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+\begin{lem}\label{plus:times:lemma}
+$k/\bQ_p$をガロア拡大とする. また$\alpha \in \Aut(G_k)$に対して, 復元アルゴリズムによる自然な準同型$\Aut(G_k) \rightarrow \Aut(k_+)$, $\Aut(G_k) \rightarrow \Aut(k^\times)$による$\alpha$の像をそれぞれ$\alpha_+$, $\alpha^\times$とする. このとき以下の二つの図式が可換する. 
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+   \item[\rm (i)] 
+\[
+\begin{tikzcd}
+k^\times \arrow[rr, "{\rm Nm}_k"] \arrow[d, "\alpha^\times"'] && \bQ_p^\times \arrow[d, equal] \\
+k^\times \arrow[rr, "{\rm Nm}_k"']                         && \bQ_p^\times.                
+\end{tikzcd}
+\]\label{lemma:2.2:statement:1}
+\end{enumerate} \label{lemma:2.2:statement:2}
+\end{lem}
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+\begin{lem}\label{Norm:Trace:lemma}
+\begin{enumerate}[label=(\roman*),ref=(\roman*)]
+   \item[\rm (ii)] 
+\[
+\begin{tikzcd}
+k_{+} \arrow[rr, "{\rm Tr}_k"] \arrow[d, "\alpha_{+}"'] && (\bQ_p)_+ \arrow[d, equal] \\
+k_{+} \arrow[rr, "{\rm Tr}_k"']                         && (\bQ_p)_+.                
+\end{tikzcd}
+\]
+特に$\alpha_+$を制限することで${\rm Ker}({\rm Tr}_k)$の自己同型が誘導される. つまり以下が成立する. 
+\[
+\alpha_+({\rm Ker}({\rm Tr}_k)) = {\rm Ker}({\rm Tr}_k)
+\]
+\end{enumerate} \label{lemma:2.2:statement:2}
+\end{lem}
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+{\Blue Proof:}
+
+まず初めに(i)については証明は\cite{Hoshi2}, Proposition 4.9, (i)を参照. 
+
+次に(ii)の証明を行う. このとき$\alpha_+$, $\alpha^\times$の定義から以下の図式が可換する. 
+\begin{center}
+\begin{tikzcd}
+\CalO_k^\times \arrow[d, "\alpha^\times"] \arrow[r, "\log_k"] & \log_k(\CalO_k^\times) \arrow[r, hook] \arrow[d, "\alpha_+"] & k_+ \arrow[d, "\alpha_+"] \\
+\CalO_k^\times \arrow[r, "\log_k"]                            & \log_k(\CalO_k^\times) \arrow[r, hook]                       & k_+                      
+\end{tikzcd}
+\end{center}
+ 
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+先程の補題達から以下の図式の右側の三角形以外の部分が可換している. 
+\begin{center}
+\begin{tikzcd}
+\CalO_k^\times \arrow[rr, "\log_k"] \arrow[rd, "\alpha^\times" description] \arrow[dd, "{\rm Nm}_k" description] &                                                                                      & \log_k(\CalO_k^\times) \arrow[rd, "\alpha_+" description] \arrow[dd, "{\rm Tr}_k", dashed] &                                                 \\
+                                                                                                                 & \CalO_k^\times \arrow[rr, "\log_k" description] \arrow[ld, "{\rm Nm}_k" description] &                                                                                            & \log_k(\CalO_k^\times) \arrow[ld, "{\rm Tr}_k"] \\
+\bZ_p^\times \arrow[rr, "\log_{\bQ_p}"]                                                                          &                                                                                      & (\bQ_p)_+                                                                                  &                                                
+\end{tikzcd}
+\end{center}
+したがって残った右側の三角形部分も可換する. さらに任意の$x \in k_+$に対して, ある正の整数$n$が存在して$p^n x \in \log_k(\CalO_k^\times)$であることから補題が従う.
+\qed
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+\begin{lem}\label{not:Q_p:preserving}
+$d_k = 2$とする. このときある$\alpha_+ \in \Im (\Aut(G_k) \rightarrow \Aut(k_+))$であって, 任意の正の整数$n$で
+\[
+\alpha_+^n(\bQ_p) \neq \bQ_p
+\]
+であるようなものが存在する. 
+\end{lem}
+
+{\Blue Proof:}
+$\alpha$を定理\ref{unipotent:theorem}の自己同型とし, $\alpha_+$をそれによって誘導される$\Aut(k_+)$の元とする. またここで$k$はある$a \in \bQ_p$を用いて$k=\bQ_p(\sqrt{a})$ と表される. また$\alpha_+$について$\alpha_+(\bQ_p)=\bQ_p$であるとする. するとある$b \in \bQ_p$が存在して以下が成立する. 
+\[
+\alpha_+^n(1) = b
+\]
+
+
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+また補題\ref{Norm:Trace:lemma}, (ii)から, ある$c \in \bQ_p$が存在して以下の式が成立する. 
+\[
+\alpha_+^n(\sqrt{a}) = c \sqrt{a}
+\]
+したがって任意の$x, y \in \bQ_p$に対して以下の式が成立する. 
+\begin{eqnarray}
+&&0 = (\alpha_+^n - {\rm id})^2 (x+y\sqrt{a}) \nonumber \\
+&=&x(b-1)^2 + y(c-1)^2 \sqrt{a} \nonumber
+\end{eqnarray}
+したがって$b=c=1$であり, $\alpha_+^n = {\rm id}$となり, $\alpha_+^n \neq {\rm id}$に反する. 
+よって補題は示される. 
+\qed
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+\begin{theorem}\label{main:theorem:d_k=2}
+$p$を奇素数, $d_k=2$とする. このとき以下が成立する. 
+\[
+\mathrm{N}_{\Out(G_k)}(\Aut(k)) \neq \Out(G_k)
+\]
+\end{theorem}
+
+{\Blue Proof:}
+$\overline{\alpha} \in \Out(G_k)$を定理\ref{not:Q_p:preserving}の$\alpha \in \Aut(G_k)$の像とし, $\alpha_+ \in \Aut(k_+)$で$\alpha$によって誘導される$k_+$の自己同型とする. $\overline{\alpha} \in \mathrm{N}_{\Out(G_k)}(\Aut(k))$とする. すると任意の$\sigma \in \Aut(k)$に対して, ある$\sigma' \in \Aut(k)$が存在して以下の式が成立する. 
+\[
+\overline{\alpha} \sigma' \overline{\alpha}^{-1} = \sigma
+\]
+
+
+
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+したがって$k_+$についての以下の図式が可換する. 
+\begin{center}
+\begin{tikzcd}
+k_+ \arrow[r, "\sigma'"] \arrow[d, "\alpha_+"] & k_+ \arrow[d, "\alpha_+"] \\
+k_+ \arrow[r, "\sigma"]                        & k_+                    
+\end{tikzcd}
+\end{center}
+
+すると任意の$x \in \bQ_p$に対して, $\alpha_+(x) = \alpha_+(\sigma'(x)) = \sigma(\alpha_+(x))$が成立する. 
+$\sigma$は任意なので$\alpha_+(x) \in \bQ_p$を得る. したがって$\alpha_+(\bQ_p) = \bQ_p$となるが, これは$\alpha_+$の取り方に反する. 
+
+\qed
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+
+\begin{theorem}\label{main:theorem:even}
+$p$を奇素数とし, $d_k$を偶数とする. また$k/\bQ_p$は有限次アーベル拡大とする. このとき以下が成立する. 
+\[
+\mathrm{N}_{\Out(G_k)}(\Aut(k)) \neq \Out(G_k)
+\]
+\end{theorem}
+{\Blue Proof:}
+
+
+$d_k=2$のときの結果を用いる. また$G_{\bQ_p} \supseteq G_k$として考える. このとき, ある$G_{\bQ_p} \supseteq G_2$が存在して, $[G_{\bQ_p}:G_2]=2$かつ, $G_2 \supseteq G_k$であり, さらに$G_k$は$G_2$の特性的部分群となる[cf.\ \cite{Hoshi2}, Theorem F, (i)]. つまり任意の$\alpha \in \Aut(G_2)$で$\alpha(G_k) = G_k$である. またここで$k/\bQ_p$がアーベル拡大という仮定を使用している.  
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{主定理の証明}
+$G_2$は$[G_{\bQ_p}:G_2]=2$であることから$\bQ_p$のある2次拡大の絶対ガロア群と同型であることに注意する. \\
+
+
+
+ここで$\alpha \in \Aut(G_2)$を定理\ref{not:Q_p:preserving}の$\alpha$とする. このとき$G_k$が$G_2$の特性的部分群であるので, 制限による以下の自然な準同型が存在している. 
+\[
+\phi \colon \Aut(G_2) \rightarrow \Aut(G_k)
+\]
+すると$\phi(\alpha)$が$\alpha$と同様に$\phi(\alpha)_+(\bQ_p) \neq \bQ_p$を満たすことが分かり, あとは定理\ref{main:theorem:d_k=2}の証明と同様にして$\phi(\alpha) \notin \mathrm{N}_{\Out(G_k)}(\Aut(k))$であることが示される. 
+
+\qed
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\frame
+{
+	\frametitle{参考文献}
+    
+    \begin{thebibliography}{99}
+
+\bibitem{N-hoshi}
+Y. Hoshi and Y. Nishio, 
+On the outer automorphism groups of the absolute Galois groups of mixed-characteristic local fields,
+RIMS Preprint 1931 (November 2020).  
+
+\bibitem{Hoshi2}
+Y.\ Hoshi, Topics in the anabelian geometry of mixed-characteristic local fields, Hiroshima Math.\ J.\ 49 (2019), no.\ 3, 323–398.
+
+
+\bibitem{Hoshi1}
+Y.\ Hoshi, Introduction to mono-anabelian geometry, to appear in Proceedings of the conference ``Fundamental Groups in Arithmetic Geometry'', Paris, France 2016.
+
+
+\bibitem{NSW}
+J.\ Neukirch, A.\ Schmidt, and K.\ Wingberg, Cohomology of number fields, Second edition.\
+Grundlehren der Mathematischen Wissenschaften, 323.\ Springer-Verlag, Berlin, 2008.
+
+
+\bibitem{JR}
+M.\ Jarden and J.\ Ritter, On the characterization of local fields by their absolute Galois
+groups, J.\ Number Theory 11 (1979), no. 1, 1–13
+
+
+\end{thebibliography}
+
+}
+
+
+\section{appendix}
+
+\begin{frame}[fragile]
+	\frametitle{Appendix1}
+今回の研究の結果得られる結果として, 以下の定理が成立する. 
+\begin{theorem}
+$k/\bQ_p$をアーベル拡大, $d_k$を偶数とする. このとき$\Aut(k)$の$\Out(G_k)$共役の集合は無限集合である. 特に$\Out(G_k)$は無限群である. 
+\end{theorem}
+
+{\Blue Proof:}
+$\alpha$を定理\ref{main:theorem:even}の証明の中の$\phi(\alpha)$とし, $\Out(G_k)$における像を$\overline{\alpha}$とする. 正の整数$n$に対して$\overline{\alpha}^n$による共役$\overline{\alpha}^n \Aut(k) \overline{\alpha}^{-n}$を考えると，定理\ref{main:theorem:even}の証明から，これらは$n$が異なれば異なる部分群となる \qed
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}[fragile]
+	\frametitle{Appendix2}
+
+また今回の$\Out(G_k)$に関する考察から以下の系も成立する. 
+\begin{corollary}
+$d_k=2$とする. このとき, $\mathrm{Z}(\Out(G_k))$の元の$\Aut(G_k)$への持ち上げから誘導された$k_+$の自己同型は自明である. 
+\end{corollary}
+
+{\Blue Proof:}
+$\beta \in \mathrm{Z}(\Out(G_k))$とし, $\beta_+$を復元アルゴリズムによって誘導される準同型$\Out(G_k) \rightarrow \Aut(k_+)$による$\beta$の像とする. このとき$\mathrm{Z}(\Out(G_k)) \subseteq \mathrm{N}_{\Out(G_k)}(\Aut(k))$であるので, 定理\ref{main:theorem:d_k=2}の証明と同様の議論から$\beta_+(\bQ_p) = \bQ_p$である. また補題\ref{Norm:Trace:lemma}, (ii)から$\beta_+$は${\rm Tr}_k$と可換するので$\beta_+$を$\bQ_p$上に制限すると恒等写像であることがわかる. 
+
+
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Appendix3}
+
+またここで$\alpha \in \Out(G_k)$を定理\ref{not:Q_p:preserving}における$\Aut(G_k)$の元の像としたとき, $\beta \in \mathrm{Z}(\Out(G_k))$であるので$\alpha \beta = \beta \alpha$が成立している. したがってこれらを$\Aut(k_+)$で考えると任意の$x \in \bQ_p$に対して
+\[
+\beta_+(\alpha_+(x))=\alpha_+(\beta_+(x))=\alpha_+(x)
+\]
+となる. しかしここで$\alpha_+(\bQ_p) \neq \bQ_p$であることと, $\beta_+$は$\bQ_p$上恒等写像であることから, $\beta_+$は$k_+$の2つの一次独立なベクトルを恒等に保つことが分かり, $k_+$上の恒等写像であることがわかる. 
+\qed
+\end{frame}
+
+
+
+
+
+
+\end{document}
+ 
