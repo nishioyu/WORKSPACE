@@ -1,4 +1,0 @@
-        01  ORCA-BLOB.
-            02  ORCA-BLOB-OBJECT    PIC X(36).
-            02  ORCA-BLOB-FILE      PIC X(400).
-            02  FILLER              PIC X(15307).

@@ -1,0 +1,22 @@
+# Dockerfile
+FROM ubuntu:20.04
+
+# 必要なパッケージのインストール
+RUN apt-get update && apt-get install -y \\
+    build-essential \\
+    git \\
+    cmake \\
+    wget && \\
+    apt-get clean
+
+# bitnet.cppのクローンとビルド
+RUN git clone <https://github.com/microsoft/bitnet.cpp.git> /bitnet && \\
+    cd /bitnet && \\
+    cmake . && \\
+    make
+
+# 作業ディレクトリの指定
+WORKDIR /bitnet
+
+# エントリポイントを指定
+ENTRYPOINT ["./bitnet"]
